@@ -30,7 +30,7 @@ func ToJson(obj interface{}) string {
 }
 
 func ToBeautifyJson(obj interface{}) string {
-	body, err := json.MarshalIndent(u, "", "\t")
+	body, err := json.MarshalIndent(obj, "", "\t")
 	if err != nil {
 		panic(err)
 	}
