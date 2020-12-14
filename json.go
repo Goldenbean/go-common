@@ -26,6 +26,13 @@ func Marshal(obj interface{}) []byte {
 }
 
 func ToJson(obj interface{}) string {
-
 	return string(Marshal(obj))
+}
+
+func ToBeautifyJson(obj interface{}) string {
+	body, err := json.MarshalIndent(u, "", "\t")
+	if err != nil {
+		panic(err)
+	}
+	return string(body)
 }
