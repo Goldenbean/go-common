@@ -2,6 +2,7 @@ package common
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,8 +78,7 @@ func HTTPGet(url string) string {
 }
 
 // HTTPGetBinary :
-
-func HTTPGetBinary(url string) []byte, error {
+func HTTPGetBinary(url string) ([]byte, error) {
 
 	resp, err := http.Get(url)
 
@@ -94,6 +94,7 @@ func HTTPGetBinary(url string) []byte, error {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+
 	if err != nil {
 		return nil, err
 		// panic(err.Error())
@@ -102,7 +103,7 @@ func HTTPGetBinary(url string) []byte, error {
 	//	fmt.Println(string(body))
 	//	fmt.Println(res.Status)
 
-	return body,nil
+	return body, nil
 }
 
 // HTTPGetBinaryToFile :
