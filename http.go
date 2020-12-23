@@ -81,13 +81,13 @@ func HTTPGet(url string) string {
 func HTTPGetBinary(url string) []byte, error {
 
 	resp, err := http.Get(url)
+
 	if err != nil {
 		return nil, err
 		// panic(err.Error())
 	}
 
 	defer resp.Body.Close()
-
 
 	if resp.StatusCode != 200 {
 		return nil, errors.New("unexpected HTTP status: " + string(resp.StatusCode))
@@ -102,7 +102,7 @@ func HTTPGetBinary(url string) []byte, error {
 	//	fmt.Println(string(body))
 	//	fmt.Println(res.Status)
 
-	return body
+	return body,nil
 }
 
 // HTTPGetBinaryToFile :
