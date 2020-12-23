@@ -77,25 +77,26 @@ func HTTPGet(url string) string {
 }
 
 // HTTPGetBinary :
-func HTTPGetBinary(url string) []byte {
 
-	if url == "" {
-		return nil
+func HTTPGetBinary(url string) []byte, error {
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return nil, err
+		// panic(err.Error())
 	}
 
-	fmt.Println(url)
+	defer resp.Body.Close()
 
-	res, err := http.Get(url)
-	if err != nil {
-		//return ""
-		panic(err.Error())
+
+	if resp.StatusCode != 200 {
+		return nil, errors.New("unexpected HTTP status: " + string(resp.StatusCode))
 	}
 
-	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		// return ""
-		panic(err.Error())
+		return nil, err
+		// panic(err.Error())
 	}
 
 	//	fmt.Println(string(body))
