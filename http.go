@@ -32,6 +32,36 @@ func HTTPPost(url string, data []byte) {
 	fmt.Println("Response Body:", string(bodyx))
 }
 
+// HTTPPut :
+func HTTPPut(url string, data []byte) (string, error) {
+
+	req, err := http.NewRequest("PUT", url, bytes.NewBuffer(data))
+	req.Header.Set("Content-Type", "application/json")
+
+	if err != nil {
+		return nil, err
+	}
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+
+	if err != nil {
+		return nil, err
+		// panic(err)
+	}
+	defer resp.Body.Close()
+
+	//fmt.Println("Response Status:", resp.Status)
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return body, nil
+	//fmt.Println("Response Body:", string(body))
+}
+
 // HTTPPostWithHeader :
 func HTTPPostWithHeader(url string, data []byte, headers map[string]string) []byte {
 
