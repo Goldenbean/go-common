@@ -58,7 +58,7 @@ func HttpPut(url string, data []byte) (string, error) {
 		return "", err
 	}
 
-	return body, nil
+	return string(body), nil
 	//fmt.Println("Response Body:", string(body))
 }
 
