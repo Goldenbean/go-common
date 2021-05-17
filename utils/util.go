@@ -25,14 +25,20 @@ func Marshal(obj interface{}) []byte {
 	return body
 }
 
-func ToJson(obj interface{}) string {
-	return string(Marshal(obj))
+func PrettyPrint(obj interface{}) {
+	body := PrettyJson(obj)
+	fmt.Printf("%s\n", body)
 }
 
-func ToBeautifyJson(obj interface{}) string {
-	body, err := json.MarshalIndent(obj, "", "\t")
+func PrettyJson(obj interface{}) string {
+	indent := "\t"
+	body, err := json.MarshalIndent(obj, "", indent)
+
 	if err != nil {
-		panic(err)
+		//panic(err)
+		fmt.Println(err)
+		return ""
 	}
+
 	return string(body)
 }
