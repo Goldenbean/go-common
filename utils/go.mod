@@ -1,4 +1,4 @@
-module github.com/goldenbean/go-common/utils
+module github.com/goldenbean/go-common
 
 go 1.15
 
