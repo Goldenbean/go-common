@@ -1,4 +1,4 @@
-package common
+package utils
 
 // SliceContains : slice contains substr
 func SliceContains(slice []string, substr string) bool {

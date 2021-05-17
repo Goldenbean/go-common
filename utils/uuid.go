@@ -1,10 +1,15 @@
-package common
+package utils
 
 import (
 	"fmt"
 
-	"github.com/satori/go.uuid"
+	guuid "github.com/google/uuid"
+	uuid "github.com/satori/go.uuid"
 )
+
+func NewUuid() string {
+	return guuid.New().String()
+}
 
 // Generate : create UUID
 func Generate() uuid.UUID {
@@ -13,8 +18,4 @@ func Generate() uuid.UUID {
 	fmt.Printf("UUIDv4: %s\n", ret)
 
 	return ret
-}
-
-func main() {
-	Generate()
 }

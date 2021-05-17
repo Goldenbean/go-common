@@ -1,7 +1,7 @@
-package common
+package http
 
-// Response : REST response
-type Response struct {
+// RestResponse : REST response
+type RestResponse struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`
 	Success bool        `json:"success"`
